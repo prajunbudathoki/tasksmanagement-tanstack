@@ -68,6 +68,15 @@ export const SignInCard = () => {
           Login with google
         </Button>
       </CardContent>
+      <div className="px-7">
+        <Separator />
+      </div>
+      <CardContent className="p-7 flex items-center justify-center">
+        <p>
+          Don&apos;t have an account?
+          <span className="text-blue-700">&nbsp;Sign Up</span>
+        </p>
+      </CardContent>
     </Card>
   );
 };
