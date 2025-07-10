@@ -8,7 +8,6 @@ export const Route = createFileRoute("/auth")({
 
 function RouteComponent() {
   const location = useLocation();
-  console.log("location", location);
   return (
     <main className="bg-neutral-200 min-h-screen">
       <div className="mx-auto max-w-screen-2xl p-4">

@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import "../../styles/app.css";
+import { Toaster } from "sonner";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -31,11 +32,15 @@ export const Route = createRootRoute({
     ],
   }),
   component: RootComponent,
+  notFoundComponent: () => {
+    return "No component";
+  },
 });
 
 function RootComponent() {
   return (
     <RootDocument>
+      <Toaster position="top-right" richColors />
       <Outlet />
     </RootDocument>
   );

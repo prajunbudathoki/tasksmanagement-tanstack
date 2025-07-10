@@ -12,6 +12,7 @@ export const SignInCard = () => {
       password: "",
     },
     onSubmit: async ({ value }) => {
+      console.log("assa");
       console.log("form submitted", value);
     },
   });

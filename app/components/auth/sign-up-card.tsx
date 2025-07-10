@@ -4,8 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "@tanstack/react-form";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useNavigate } from "@tanstack/react-router";
 
 export const SignUpCard = () => {
+  const navigate = useNavigate();
   const form = useForm({
     defaultValues: {
       name: "",
@@ -13,7 +17,25 @@ export const SignUpCard = () => {
       password: "",
     },
     onSubmit: async ({ value }) => {
-      console.log("form submitted", value);
+      console.log("as");
+      console.log({ value });
+      await authClient.signUp.email(
+        {
+          email: value.email,
+          password: value.password,
+          name: value.name,
+          callbackURL: "/",
+        },
+        {
+          onSuccess: () => {
+            toast.success("Sign up successful! Redirecting...");
+            navigate({ to: "/auth/Signin" });
+          },
+          onError: (error) => {
+            console.error("Sign up failed", error);
+          },
+        }
+      );
     },
   });
   return (
@@ -62,9 +84,13 @@ export const SignUpCard = () => {
               />
             )}
           />
-
-          <Button size={"lg"} variant={"default"} className="w-full">
-            Log in
+          <Button
+            size={"lg"}
+            type="submit"
+            variant={"default"}
+            className="w-full"
+          >
+            Sign up
           </Button>
         </form>
       </CardContent>
