@@ -47,7 +47,13 @@ export const SignUpCard = () => {
         <Separator />
       </div>
       <CardContent className="p-7">
-        <form className="space-y-4" onSubmit={form.handleSubmit}>
+        <form
+          className="space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            form.handleSubmit();
+          }}
+        >
           <form.Field
             name="name"
             children={(field) => (
